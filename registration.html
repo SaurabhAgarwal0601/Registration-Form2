@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Registration Form</title>
+<script  type="text/javascript">
+function validation(){
+         var name = document.getElementById('name');
+         var email = document.getElementById('email');
+         var phone_no = document.getElementById('phone_no');
+         var password = document.getElementById('password');
+
+if(lengthname(name, "*All fields required*")){
+		
+		if(lengthDefine(password,15)){
+		
+		    if(emailValidationfunc(email, "* Please enter a valid email address *")){
+			            
+			if(textNumericfunc(phone_no, "* Please enter a valid phone no. *")){
+				
+						  return true;	
+			}
+		}
+	}
+	
+  }	
+	return false;
+	
+}
+function lengthname(n,msg){
+if(n.value.length == 0)
+{
+  document.getElementById('i1').innerHTML=msg;
+  return false;
+} 
+}
+// checks whether phone no. is numeric or not.
+
+function numericphonefunc(input, Msg){
+	var numeric = /^[0-9]+$/;
+	if(input.value.match(numeric)){
+		return true;
+	}else{
+		document.getElementById('i3').innerHTML = Msg;  //this segment displays the validation rule for zip
+                
+		return false;
+	}
+}
+// checks whether an user entered valid email address or not and displays alert message on wrong email address format.
+
+function emailValidationfunc(input, Msg){
+	var emailexp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+	if(input.value.match(emailexp)){
+		return true;
+	}else{
+		document.getElementById('i2').innerHTML = Msg; //this segment displays the validation rule for email
+		
+                return false;
+	}
+}
+function lengthDefine(input,min){
+	var Input = input.value;
+	if(Input.length >= min){
+		return true;
+	}else{
+		
+		document.getElementById('i4').innerHTML = "* Please enter between " +min+ " characters *";
+		
+                return false;
+	}
+}
+</script>
+</head>
+<body style="background-color:tomato;">
+<form  onsubmit ="return validation()">
+<label>Full Name:</label>
+<input type="text" name="name" id="name">
+<p id="i1"></p>
+<br></br>
+
+<label>Email-id:</label>
+<input type="email" name="email" id="email">
+<p id="i2"></p>
+<br></br>
+
+<label>Phone No.:</label>
+<input type="phno" name="phone_no" id="phone_no">
+<p id="i3"></p>
+<br></br>
+
+<label>Password:</label>
+<input type="password" name="password" id="password">
+<p id="i4"></p>
+<br></br>
+
+<input type="submit" name="submit" value="Submit Now">
+</form>
+</body>
+</html>
+
+
